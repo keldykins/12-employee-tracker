@@ -15,7 +15,7 @@ function start() {
         "add an employee",
         "add a role",
         "add a department",
-        "update an employee's role",
+        "update an employee",
         "quit",
       ],
     })
@@ -39,9 +39,8 @@ function start() {
       if (answer.action === "add a department") {
         addDepartments();
       }
-      if (answer.action === "update an employee's role") {
-        var list = viewEmployees();
-        update(list);
+      if (answer.action === "update an employee") {
+        update();
       }
       if (answer.action === "quit") {
         quit();
@@ -49,31 +48,79 @@ function start() {
     });
 }
 
+var employeeList;
+console.log(employeeList);
+
 function viewEmployees() {
   return connection.query(
     "SELECT employees.id, employees.first_name, employees.last_name, roles.title, departments.name AS department, roles.salary, CONCAT(manager.first_name, ' ', manager.last_name) AS manager FROM departments LEFT JOIN roles ON departments.id = roles.department_id LEFT JOIN employees ON roles.id = employees.role_id LEFT JOIN employees manager ON employees.manager_id = manager.id ORDER BY employees.id ASC;",
     function (err, res) {
       if (err) throw err;
       console.table(res);
-      console.log(res);
+      employeeList = res;
       start();
     }
   );
 }
+function choose(arr) {
+  inquirer
+    .prompt([
+      {
+        name: "select",
+        type: "rawlist",
+        message: "Select employee ID",
+        choices: arr.map((x) => x.id),
+      },
+    ])
+    .then((answer) => {
+      console.log(answer);
+      // connection.query("SELECT");
+      connection.query(
+        "SELECT * FROM `employees` WHERE `id` = ?",
+        [answer.select],
+        function (error, results, fields) {
+          console.table(results);
+          var nObj = { ...results[0] };
+          var id = results[0].id;
+          delete nObj["id"];
+          inquirer
+            .prompt([
+              {
+                name: "field",
+                type: "rawlist",
+                message: "Select a field to update",
+                choices: Object.keys(nObj),
+              },
+              {
+                name: "value",
+                type: "input",
+                message: "What is the new value?",
+              },
+            ])
+            .then((answer) => {
+              connection.query("UPDATE employees SET ? WHERE id = ?", [
+                { [answer.field]: answer.value },
+                id,
+              ]),
+                function (error, results, fields) {
+                  if (error) throw error;
+                  console.table(results);
+                };
+            });
+        }
+      ); //connection.query
+    }); //first .then
+} //update
+
 function update(arr) {
-  inquirer.prompt([
-    {
-      name: "select",
-      type: "rawlist",
-      message: "Select employee ID",
-      choices: arr.map(x => x.id),
-    },
-  ]);
-  .then(answer => {
-    connection.query(
-      "SELECT"
-    )
-  })
+  connection.query(
+    "SELECT employees.id, employees.first_name, employees.last_name, roles.title, departments.name AS department, roles.salary, CONCAT(manager.first_name, ' ', manager.last_name) AS manager FROM departments LEFT JOIN roles ON departments.id = roles.department_id LEFT JOIN employees ON roles.id = employees.role_id LEFT JOIN employees manager ON employees.manager_id = manager.id ORDER BY employees.id ASC;",
+    function (err, res) {
+      if (err) throw err;
+      console.table(res);
+      choose(res);
+    }
+  );
 }
 function viewRoles() {
   connection.query(
