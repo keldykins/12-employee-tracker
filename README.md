@@ -1,16 +1,12 @@
-# Employee Tracker
+# Employee Summary
 
 ## Description
 
-This is a command line content management system, designed to manage employees and their roles, salaries, managers, and IDs. This app combines the use of mySQL, node, and inquirer. You are able to add, view, and/or update departments, roles, or employees.
-
-## Installation
-
-Navigate to the terminal and open index.js using "node index.js"
+Node CLI that takes in information about employees and generates an HTML webpage that displays summaries for each person. Designed to manage employees and their roles, salaries, managers, and IDs. This app combines the use of mySQL, node, and inquirer. You are able to add, view, and/or update departments, roles, or employees.
 
 ## Usage
 
-Manage employees and their roles, salaries, managers, and IDs.
+Navigate to the terminal and open index.js using "node index.js"
 
 ## Contact
 
@@ -27,3 +23,6 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+## Screenshots
+
