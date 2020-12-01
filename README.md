@@ -6,7 +6,7 @@ Node CLI that takes in information about employees and generates an HTML webpage
 
 ## Usage
 
-Navigate to the terminal and open index.js using "node index.js"
+Open project in terminal and enter "app.js" to prompt questions and generate page.
 
 ## Contact
 
@@ -26,3 +26,5 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 
 ## Screenshots
 
+<img width="781" alt="Screen Shot 2020-12-01 at 11 55 38 AM" src="https://user-images.githubusercontent.com/66789135/100784275-2dd1c800-33cc-11eb-8dc7-b202b785c1f4.png">
+<img width="779" alt="Screen Shot 2020-12-01 at 11 55 51 AM" src="https://user-images.githubusercontent.com/66789135/100784280-2f9b8b80-33cc-11eb-8acd-970b557b2115.png">
